@@ -1,10 +1,11 @@
 import './App.css'
+import {SearchBar} from "./SearchBar.tsx";
 
 function App() {
 
   return (
     <>
-        <p>Hello World </p>
+        <SearchBar/>
     </>
   )
 }
