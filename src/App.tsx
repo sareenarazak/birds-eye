@@ -1,9 +1,7 @@
 import './App.css'
-import {SearchBar} from "./SearchBar.tsx";
-import {useReducer, useState} from "react";
-// import {SearchResults} from "./SearchResults";
-// import {BirdRedcucer} from "./BirdRedcucer";
-import {Favorites} from "./Favorites";
+import React, {useState} from "react";
+import {SearchBar} from "./SearchBar";
+import {SearchResults} from "./SearchResults";
 
 function App() {
     const BASE_URL = 'https://api.ebird.org/v2/data/obs/geo/recent?';
@@ -39,7 +37,7 @@ function App() {
   return (
     <>
         <SearchBar onSearch={ handleSubmitSearch }/>
-        {/*<SearchResults/>*/}
+        <SearchResults birdSightings={ searchResults }/>
         {/*<Favorites/>*/}
     </>
   )

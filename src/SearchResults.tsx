@@ -1,5 +1,5 @@
-import React from "react";
 import {BirdCard} from "./BirdCard";
+import React from "react";
 
 export function SearchResults ({ birdSightings }) {
     return (
