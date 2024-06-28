@@ -1,31 +1,25 @@
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent} from "react";
 
 interface SearchBarProps {
-    onSearch: (event: FormEvent<HTMLButtonElement>, coordinates: string) => void;
+    onSearch: (event: FormEvent<HTMLFormElement>) => void;
 }
 
 export function SearchBar({ onSearch } : SearchBarProps) {
 
-    const [ coordinates, setCoordinates] = useState('');
 
     return (
         <>
-            <h1> Enter latitude and longitude to search bird sightings</h1>
-            <input
-                type="text"
-                value={ coordinates }
-                placeholder="180,-90"
-                onChange={
-                    (e) => {
-                        setCoordinates(e.target.value);
-                    }}
-            />
-            <button
-                onClick={ (event) => onSearch(event, coordinates) }
-                type="submit"
-            >
-                Search
-            </button>
+            <h3> Search for bird sightings</h3>
+            <form onSubmit={(event) => onSearch(event)}>
+                <label htmlFor="latitude">Latitude</label>
+                <input name="latitude" placeholder="180"/>
+                <br/>
+                <label htmlFor="longitude">Longitude</label>
+                <input name="longitude" placeholder="90"/>
+                <br/>
+                <button type="submit">Search</button>
+            </form>
+
         </>
 
     )

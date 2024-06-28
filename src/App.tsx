@@ -10,11 +10,12 @@ function App() {
 
     const [birds, dispatch] = useReducer(birdReducer, initialState);
 
-    async function handleSubmitSearch(event: FormEvent<HTMLButtonElement>, coordinates: string) {
+    async function handleSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        const formData = new FormData(event.currentTarget);
 
-        const latitude = Number.parseFloat(coordinates.split(",")[0]);
-        const longitude = Number.parseFloat(coordinates.split(",")[1]);
+        const latitude = Number.parseFloat(formData.get('latitude') as string);
+        const longitude = Number.parseFloat(formData.get('longitude') as string);
         const URL =  `${BASE_URL}lat=${latitude}&lng=${longitude}`;
 
         console.log(URL);
@@ -33,7 +34,7 @@ function App() {
 
   return (
     <>
-        <SearchBar onSearch={ handleSubmitSearch }/>
+        <SearchBar onSearch={ handleSearch }/>
         <SearchResults birdSightings={ birds.sightings }/>
         {/*<Favorites/>*/}
     </>

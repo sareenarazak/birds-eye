@@ -1,4 +1,5 @@
 import React from "react";
+
 interface BirdData {
     commonName: string;
     scientificName: string;

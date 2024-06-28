@@ -4,3 +4,7 @@
   padding: 2rem;
   text-align: center;
 }
+
+label {
+  margin-right: 10px;
+}
