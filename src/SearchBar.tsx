@@ -1,6 +1,10 @@
-import React, {useState} from "react";
+import React, {FormEvent, useState} from "react";
 
-export function SearchBar({ onSearch }) {
+interface SearchBarProps {
+    onSearch: (event: FormEvent<HTMLButtonElement>, coordinates: string) => void;
+}
+
+export function SearchBar({ onSearch } : SearchBarProps) {
 
     const [ coordinates, setCoordinates] = useState('');
 

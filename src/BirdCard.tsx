@@ -5,7 +5,8 @@ interface BirdData {
     speciesCode: string;
     location: string;
 }
-export function BirdCard({ commonName, scientificName, speciesCode, location }: BirdData) {
+export function BirdCard({ birdData }: { birdData: BirdData }) {
+    const { commonName, scientificName, speciesCode, location } = birdData;
     return (
         <div>
             <p>Common Name: {commonName}</p>
