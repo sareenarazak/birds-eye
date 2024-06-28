@@ -2,3 +2,4 @@
 ~~* Get bird image~~ 
 * Add functionality for adding and removing fav birds
 * look up tsx best practices for passing props 
+* Add gmaps integ for location 

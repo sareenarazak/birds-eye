@@ -27,12 +27,15 @@ label {
 }
 
 .scientific-name,
-.species-code,
-.location {
+.species-code
+ {
   font-size: 1rem;
   margin: 5px 0;
 }
 
+.location {
+  font-size: 0.8rem  ;
+}
 .bird-image img {
   max-width: 100%;
   height: auto;

@@ -19,9 +19,8 @@ export function BirdCard({ birdData } : { birdData : BirdData}) {
 
             <div className="bird-info">
                 <h2 className="common-name">{commonName}</h2>
-                <p className="scientific-name">Scientific Name: {scientificName}</p>
-                <p className="species-code">Species Code: {speciesCode}</p>
-                <p className="location">Sighting Location: {location}</p>
+                <p className="scientific-name"><i>{scientificName}</i></p>
+                <p className="location">location: {location}</p>
             </div>
         </div>
     );
