@@ -1,9 +1,6 @@
-~~* Set up env variable for API key~~
-~~* Create a Birds Components to list each BirdCard~~
-~~* Use reducer to list sightings instead of state~~
-* Add ts type for bird 
-* Get bed image 
-* Fix ts errors 
+
+* Get bird image 
+* Add functionality for adding and removing fav birds
 
 * Separate the latitude and longitude input fields
 * Add validation for input or define typescript type
