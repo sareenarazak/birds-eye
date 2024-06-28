@@ -1,8 +1,17 @@
-export const initialState = {
+interface Birds {
+    sightings: [];
+}
+
+interface Action {
+    type: string;
+    sightings: [];
+}
+
+export const initialState: Birds = {
     sightings: [],
 };
 
-export function  birdReducer(birds, action) {
+export function  birdReducer(birds:  Birds, action: Action) {
     switch (action.type) {
         case 'set_sightings': {
             return {
@@ -10,5 +19,8 @@ export function  birdReducer(birds, action) {
                 sightings: action.sightings
             }
         }
+
+        default:
+            return birds;
     }
 }
