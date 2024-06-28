@@ -1,14 +1,14 @@
 import './App.css'
-import React, {useState} from "react";
+import React, {useReducer} from "react";
 import {SearchBar} from "./SearchBar";
 import {SearchResults} from "./SearchResults";
+import {birdReducer, initialState} from "./birdReducer";
 
 function App() {
     const BASE_URL = 'https://api.ebird.org/v2/data/obs/geo/recent?';
     // const API_KEY = import.meta.env.VITE_EBIRD_API_KEY;
 
-
-    const [searchResults, setSearchResults] = useState([]);
+    const [birds, dispatch] = useReducer(birdReducer, initialState);
 
     async function handleSubmitSearch(event: Event, coordinates: string) {
         event.preventDefault();
@@ -25,19 +25,16 @@ function App() {
             }});
 
         const data = await response.json();
-        setSearchResults(data.map(d => {
-            return  {
-                speciesCode: d["speciesCode"],
-                commonName: d["comName"]
-            }
-        }));
-
+        dispatch({
+            type: 'set_sightings',
+            sightings: data,
+        })
     }
 
   return (
     <>
         <SearchBar onSearch={ handleSubmitSearch }/>
-        <SearchResults birdSightings={ searchResults }/>
+        <SearchResults birdSightings={ birds.sightings }/>
         {/*<Favorites/>*/}
     </>
   )

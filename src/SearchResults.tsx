@@ -6,7 +6,7 @@ export function SearchResults ({ birdSightings }) {
         <div>
             <ul>
                 { birdSightings.map(bird => {
-                        return <li key={bird.speciesCode}><BirdCard {...bird}></BirdCard></li>;
+                        return <li key={bird['speciesCode']}><BirdCard speciesCode={ bird['speciesCode'] } commonName={ bird['comName'] }></BirdCard></li>;
                     }
                 )}
             </ul>
