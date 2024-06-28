@@ -1,10 +1,41 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
 label {
   margin-right: 10px;
+}
+
+.bird-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.bird-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  border: 1px solid #ddd; /* Add border */
+  border-radius: 8px; /* Optional: Add border radius for rounded corners */
+}
+
+.bird-info {
+  text-align: center;
+  color: #535bf2;
+}
+
+.common-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.scientific-name,
+.species-code,
+.location {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.bird-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
