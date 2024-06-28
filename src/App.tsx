@@ -1,5 +1,5 @@
 import './App.css'
-import React, {useReducer} from "react";
+import React, {FormEvent, useReducer} from "react";
 import {SearchBar} from "./SearchBar";
 import {SearchResults} from "./SearchResults";
 import {birdReducer, initialState} from "./birdReducer";
@@ -10,7 +10,7 @@ function App() {
 
     const [birds, dispatch] = useReducer(birdReducer, initialState);
 
-    async function handleSubmitSearch(event: Event, coordinates: string) {
+    async function handleSubmitSearch(event: FormEvent<HTMLButtonElement>, coordinates: string) {
         event.preventDefault();
 
         const latitude = Number.parseFloat(coordinates.split(",")[0]);
