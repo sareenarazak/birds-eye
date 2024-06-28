@@ -3,9 +3,10 @@ interface Birds {
 }
 
 interface Action {
-    type: string;
+    type: 'set_sightings';
     sightings: [];
 }
+
 
 export const initialState: Birds = {
     sightings: [],

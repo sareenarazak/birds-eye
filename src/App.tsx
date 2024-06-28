@@ -1,7 +1,7 @@
 import './App.css'
 import React, {FormEvent, useReducer} from "react";
-import {SearchBar} from "./SearchBar";
-import {SearchResults} from "./SearchResults";
+import {SearchBar} from "./components/SearchBar";
+import {SearchResults} from "./components/SearchResults";
 import {birdReducer, initialState} from "./birdReducer";
 
 function App() {
@@ -28,10 +28,10 @@ function App() {
 
             const data = await response.json();
 
+            // TODO : batch request for images
             const birdSightings = await Promise.all(
                 data.map(async (d) => {
                     const imageUrl = await getWikiImage(d.sciName);
-                    console.log(imageUrl)
                     return {
                         ...d,
                         imageUrl

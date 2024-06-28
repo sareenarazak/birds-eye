@@ -11,14 +11,13 @@ label {
 .bird-card {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  border: 1px solid #ddd; /* Add border */
-  border-radius: 8px; /* Optional: Add border radius for rounded corners */
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
 .bird-info {
   text-align: center;
-  color: #535bf2;
+  color: #f253b5;
 }
 
 .common-name {

@@ -8,7 +8,7 @@ interface BirdData {
     imageUrl: string;
 }
 
-export function BirdCard({ birdData } :{ birdData : BirdData}) {
+export function BirdCard({ birdData } : { birdData : BirdData}) {
     const { commonName, scientificName, speciesCode, location, imageUrl } = birdData;
 
     return (
