@@ -1,12 +1,10 @@
-import React, {FormEvent} from "react";
+import React, { FormEvent } from "react";
 
 interface SearchBarProps {
     onSearch: (event: FormEvent<HTMLFormElement>) => void;
 }
 
 export function SearchBar({ onSearch } : SearchBarProps) {
-
-
     return (
         <>
             <h3> Search for bird sightings</h3>
@@ -19,8 +17,6 @@ export function SearchBar({ onSearch } : SearchBarProps) {
                 <br/>
                 <button type="submit">Search</button>
             </form>
-
         </>
-
     )
 }

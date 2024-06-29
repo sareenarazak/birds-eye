@@ -1,15 +1,14 @@
 import React from "react";
 
-interface BirdData {
+export interface BirdData {
     commonName: string;
     scientificName: string;
-    speciesCode: string;
     location: string;
     imageUrl: string;
 }
 
 export function BirdCard({ birdData } : { birdData : BirdData}) {
-    const { commonName, scientificName, speciesCode, location, imageUrl } = birdData;
+    const { commonName, scientificName, location, imageUrl } = birdData;
 
     return (
         <div className="bird-card">
@@ -19,7 +18,7 @@ export function BirdCard({ birdData } : { birdData : BirdData}) {
 
             <div className="bird-info">
                 <h2 className="common-name">{commonName}</h2>
-                <p className="scientific-name"><i>{scientificName}</i></p>
+                <h4 className="scientific-name"><i>{scientificName}</i></h4>
                 <p className="location">location: {location}</p>
             </div>
         </div>

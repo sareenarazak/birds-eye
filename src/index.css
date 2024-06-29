@@ -23,9 +23,7 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 10px
 }
 
 h1 {

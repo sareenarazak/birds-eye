@@ -1,25 +1,25 @@
-import './App.css'
-import React, {FormEvent, useReducer} from "react";
-import {SearchBar} from "./components/SearchBar";
-import {SearchResults} from "./components/SearchResults";
-import {birdReducer, initialState} from "./birdReducer";
+import "./App.css"
+import React, { FormEvent, useReducer } from "react";
+import { SearchBar } from "./components/SearchBar";
+import { SearchResults } from "./components/SearchResults";
+import { birdReducer, initialState } from "./birdReducer";
+import { Favorites } from "./components/Favorites";
 
 function App() {
-    const BASE_URL = 'https://api.ebird.org/v2/data/obs/geo/recent?';
-    // const API_KEY = import.meta.env.VITE_EBIRD_API_KEY;
+    const E_BIRD_BASE_URL = 'https://api.ebird.org/v2/data/obs/geo/recent?';
 
     const [birds, dispatch] = useReducer(birdReducer, initialState);
 
 
     async function handleSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
 
+        const formData = new FormData(event.currentTarget);
         const latitude = Number.parseFloat(formData.get('latitude') as string);
         const longitude = Number.parseFloat(formData.get('longitude') as string);
-        const URL =  `${BASE_URL}lat=${latitude}&lng=${longitude}`;
 
-        console.log(URL);
+        const URL =  `${E_BIRD_BASE_URL}lat=${latitude}&lng=${longitude}`;
+
         try {
             const response = await fetch(URL, {
                 headers : {
@@ -45,7 +45,6 @@ function App() {
         } catch (error) {
             console.error('Error fetching bird sightings:', error);
         }
-
     }
 
     async function getWikiImage(name: string) {
@@ -58,7 +57,6 @@ function App() {
 
         if (Object.keys(pages).length > 0) {
             const imageId = Object.keys(pages)[0];
-            console.log(imageId)
             return pages[imageId].thumbnail?.source || 'no_image';
         }
 
@@ -66,13 +64,13 @@ function App() {
         return 'no_image';
     }
 
-  return (
-    <>
-        <SearchBar onSearch={ handleSearch }/>
-        <SearchResults birdSightings={ birds.sightings }/>
-        {/*<Favorites/>*/}
-    </>
-  )
+    return (
+        <>
+            <SearchBar onSearch={ handleSearch }/>
+            <Favorites/>
+            <SearchResults birdSightings={ birds.sightings }/>
+        </>
+    )
 }
 
 export default App

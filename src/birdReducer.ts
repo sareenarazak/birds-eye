@@ -3,16 +3,15 @@ interface Birds {
 }
 
 interface Action {
-    type: 'set_sightings';
+    type: string;
     sightings: [];
 }
-
 
 export const initialState: Birds = {
     sightings: [],
 };
 
-export function  birdReducer(birds:  Birds, action: Action) {
+export function  birdReducer(birds: Birds, action: Action) {
     switch (action.type) {
         case 'set_sightings': {
             return {
