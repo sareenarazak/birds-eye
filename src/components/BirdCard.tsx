@@ -1,11 +1,5 @@
 import React from "react";
-
-export interface BirdData {
-    commonName: string;
-    scientificName: string;
-    location: string;
-    imageUrl: string;
-}
+import { BirdData } from "../birdReducer";
 
 export function BirdCard({ birdData } : { birdData : BirdData}) {
     const { commonName, scientificName, location, imageUrl } = birdData;

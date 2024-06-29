@@ -1,26 +1,65 @@
-interface Birds {
-    sightings: [];
+export interface BirdData {
+    commonName: string;
+    speciesCode: string;
+    scientificName: string;
+    location: string;
+    imageUrl: string;
 }
 
-interface Action {
-    type: string;
-    sightings: [];
+interface State {
+    birdData: BirdData[];
+    // TODO : bird sightings key needs to be unique --> not species code
+    sightings: string[];
+    favorites: Set<string>;
 }
 
-export const initialState: Birds = {
-    sightings: [],
+type Action =  {
+    type: 'populate_sightings';
+    birdSightings: BirdData[];
+} | {
+    type: 'add_favorite';
+    birdId: string;
+} |  {
+    type: 'remove_favorite';
+    birdId: string;
 };
 
-export function  birdReducer(birds: Birds, action: Action) {
+export const initialState: State = {
+    birdData: [],
+    sightings: [],
+    favorites: new Set(["rocpig"]),
+};
+
+export function  birdReducer(state: State, action: Action) {
     switch (action.type) {
-        case 'set_sightings': {
+        case 'populate_sightings': {
             return {
-                ...birds,
-                sightings: action.sightings
+                ...state,
+                birdData: action.birdSightings,
+                sightings: action.birdSightings.map((sighting) => {
+                    sighting.speciesCode
+                }),
             }
         }
 
+        case 'add_favorite': {
+            const favsCopy = new Set(state.favorites);
+            favsCopy.add(action.birdId);
+            return {
+                ...state,
+                favorites: favsCopy,
+            }
+        }
+        case 'remove_favorite': {
+            const favsCopy = new Set(state.favorites);
+            favsCopy.delete(action.birdId);
+
+            return {
+                ...state,
+                favorites: favsCopy,
+            }
+        }
         default:
-            return birds;
+            return state;
     }
 }

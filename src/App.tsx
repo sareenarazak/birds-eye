@@ -2,13 +2,13 @@ import "./App.css"
 import React, { FormEvent, useReducer } from "react";
 import { SearchBar } from "./components/SearchBar";
 import { SearchResults } from "./components/SearchResults";
-import { birdReducer, initialState } from "./birdReducer";
+import { BirdData, birdReducer, initialState} from "./birdReducer";
 import { Favorites } from "./components/Favorites";
 
 function App() {
     const E_BIRD_BASE_URL = 'https://api.ebird.org/v2/data/obs/geo/recent?';
 
-    const [birds, dispatch] = useReducer(birdReducer, initialState);
+    const [state, dispatch] = useReducer(birdReducer, initialState);
 
 
     async function handleSearch(event: FormEvent<HTMLFormElement>) {
@@ -28,19 +28,23 @@ function App() {
 
             const data = await response.json();
 
-            // TODO : batch request for images
-            const birdSightings = await Promise.all(
+            // TODO : batch request for images + refactor
+            const birdSightingsData: BirdData[] = await Promise.all(
                 data.map(async (d) => {
                     const imageUrl = await getWikiImage(d.sciName);
                     return {
-                        ...d,
-                        imageUrl
+                        commonName: d.comName,
+                        speciesCode: d.speciesCode,
+                        scientificName: d.sciName,
+                        location: d.locId,
+                        imageUrl: imageUrl
                     };
-            }));
+                })
+            );
 
             dispatch({
-                type: 'set_sightings',
-                sightings: birdSightings,
+                type: 'populate_sightings',
+                birdSightings: birdSightingsData,
             });
         } catch (error) {
             console.error('Error fetching bird sightings:', error);
@@ -67,8 +71,12 @@ function App() {
     return (
         <>
             <SearchBar onSearch={ handleSearch }/>
-            <Favorites/>
-            <SearchResults birdSightings={ birds.sightings }/>
+            <Favorites favorites={
+                Array.from(state.favorites.keys())
+                    .map((fav) => state.birdData.filter((bird) => fav === bird.speciesCode))
+                    .reduce((acc, val) => acc.concat(val), [])
+            }/>
+            <SearchResults birdSightings={ state.birdData }/>
         </>
     )
 }
